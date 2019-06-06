@@ -9,7 +9,8 @@ import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 public class ContactCursorAdapter extends CursorAdapter {
-    public Context _context;
+    private Context _context;
+
     public ContactCursorAdapter(Context context, Cursor c) {
         super(context, c);
         _context = context;
@@ -17,7 +18,7 @@ public class ContactCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(_context).inflate(R.layout.contact_view, null, true);
+        return LayoutInflater.from(_context).inflate(R.layout.contact_view, null);
     }
 
     @Override
@@ -26,9 +27,9 @@ public class ContactCursorAdapter extends CursorAdapter {
         TextView phone = view.findViewById(R.id.phone_num_id);
         TextView email = view.findViewById(R.id.email_id);
 
-        String Name = cursor.getString(cursor.getColumnIndexOrThrow(ContactDBHelper.CONTACT_NAME));
-        String Phone = cursor.getString(cursor.getColumnIndexOrThrow(ContactDBHelper.CONTACT_NO));
-        String Email = cursor.getString(cursor.getColumnIndexOrThrow(ContactDBHelper.CONTACT_EMAIL));
+        String Name = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.CONTACT_NAME));
+        String Phone = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.CONTACT_NO));
+        String Email = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.CONTACT_EMAIL));
 
         name.setText(Name);
         phone.setText(Phone);
